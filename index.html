@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Mistu</title>
+
+<style>
+
+body
+{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+overflow-x:hidden;
+}
+
+/* TITLE */
+h1
+{
+font-size:45px;
+color:white;
+margin-top:20px;
+animation: glow 2s infinite alternate;
+}
+
+@keyframes glow
+{
+from {text-shadow:0 0 10px white;}
+to {text-shadow:0 0 30px yellow;}
+}
+
+h2
+{
+margin:10px;
+}
+
+/* CONTAINER */
+.container
+{
+display:flex;
+justify-content:center;
+gap:20px;
+margin-top:20px;
+flex-wrap:wrap;
+}
+
+/* CARDS */
+.card
+{
+background:white;
+width:300px;
+min-height:300px;
+border-radius:20px;
+padding:20px;
+box-shadow:0 0 20px rgba(0,0,0,0.2);
+transition:0.3s;
+}
+
+.card:hover
+{
+transform:scale(1.05);
+}
+
+/* IMAGES */
+.card img
+{
+width:200px;
+border-radius:15px;
+margin-top:10px;
+}
+
+/* GIFT SECTION CENTER */
+.giftSection
+{
+margin-top:20px;
+display:flex;
+justify-content:center;
+}
+
+/* FLOATING BALLOONS */
+.balloon
+{
+position:fixed;
+bottom:-100px;
+font-size:30px;
+animation: floatUp 10s linear infinite;
+}
+
+@keyframes floatUp
+{
+to
+{
+transform:translateY(-120vh);
+}
+}
+
+/* STARS */
+.star
+{
+position:fixed;
+color:yellow;
+animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle
+{
+50% {opacity:0.3;}
+}
+
+/* GIFT BOX */
+.giftBox
+{
+font-size:80px;
+cursor:pointer;
+transition:0.5s;
+}
+
+.giftBox:hover
+{
+transform:scale(1.2);
+}
+
+/* KITTEN */
+#kittenImage
+{
+display:none;
+animation:fadeIn 2s;
+}
+
+@keyframes fadeIn
+{
+from{opacity:0;transform:scale(0.5);}
+to{opacity:1;transform:scale(1);}
+}
+
+/* CONFETTI */
+.confetti
+{
+position:fixed;
+font-size:20px;
+animation:fall 3s linear;
+}
+
+@keyframes fall
+{
+to
+{
+transform:translateY(100vh);
+opacity:0;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🎉 Mistu 🎉</h1>
+<h2 style="color:white;">Happy Birthday Mistu ❤️</h2>
+
+<div class="container">
+
+<!-- GANG SECTION -->
+<div class="card">
+<h2>GANG 👑</h2>
+<img src="gang.jpg">
+</div>
+
+<!-- SURPRISE SECTION -->
+<div class="card">
+
+<h2>SURPRISE 🎁</h2>
+
+<div id="giftBox" class="giftBox" onclick="openGift()">
+🎁
+<p style="font-size:16px;">Tap to open</p>
+</div>
+
+<img id="kittenImage" src="kitten.jpg">
+
+</div>
+
+</div>
+
+<!-- GIFT SECTION -->
+<div class="giftSection">
+
+<div class="card">
+<h2>Gift Section 🎁</h2>
+<img src="gift.jpg">
+</div>
+
+</div>
+
+<!-- MUSIC -->
+<audio id="music" src="birthday.mp3"></audio>
+
+<script>
+
+/* OPEN GIFT */
+function openGift()
+{
+
+let box=document.getElementById("giftBox");
+let kitten=document.getElementById("kittenImage");
+let music=document.getElementById("music");
+
+/* gift opening animation */
+box.innerHTML="🎁✨";
+box.style.transform="scale(1.5) rotate(20deg)";
+
+setTimeout(()=>{
+box.style.display="none";
+kitten.style.display="block";
+},800);
+
+/* gentle confetti */
+for(let i=0;i<15;i++)
+{
+let c=document.createElement("div");
+c.className="confetti";
+c.innerHTML="🎉";
+c.style.left=Math.random()*100+"%";
+c.style.top="0";
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),3000);
+}
+
+/* play music */
+music.play();
+
+}
+
+/* BALLOONS */
+for(let i=0;i<10;i++)
+{
+let b=document.createElement("div");
+b.className="balloon";
+b.innerHTML="🎈";
+b.style.left=Math.random()*100+"%";
+b.style.animationDuration=(6+Math.random()*5)+"s";
+document.body.appendChild(b);
+}
+
+/* STARS */
+for(let i=0;i<20;i++)
+{
+let s=document.createElement("div");
+s.className="star";
+s.innerHTML="✨";
+s.style.left=Math.random()*100+"%";
+s.style.top=Math.random()*100+"%";
+document.body.appendChild(s);
+}
+
+</script>
+
+</body>
+</html>
